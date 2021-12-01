@@ -1,6 +1,18 @@
 # For more information: https://laravel.com/docs/sail
 version: '3'
 services:
+    pgadmin:
+            image: dpage/pgadmin4:latest
+            restart: always
+            environment:
+                PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL}'
+                PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD}'
+            ports:
+                - "5050:80"
+            volumes:
+                - pgadmin-data:/var/lib/pgadmin
+            networks:
+                - sail
     laravel.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.0
@@ -46,3 +58,6 @@ networks:
 volumes:
     sailpgsql:
         driver: local
+    pgadmin-data:
+        driver: local
+
