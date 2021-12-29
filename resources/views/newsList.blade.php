@@ -7,9 +7,13 @@
     <title>TheLatestNews</title>
 </head>
 <body>
-    <h1 style="margin-bottom: 20px;">Новости</h1>
-    <div class="container" style="height: auto; min-height: 40px; width: 200px;">
-    @foreach($news as $item)
+    <div style="margin: 25px 20px 20px 0px">
+        <a href="{{ route('appeal') }}">Написать сообщение</a>
+    </div>
+    <div class="container" style="height: auto; min-height: 40px; width: 200px; margin-left: 30px">
+        <h1 style="margin-bottom: 20px;">Новости</h1>
+
+        @foreach($news as $item)
         <div style="width: 100%; height: 100%; background-color: rgba(150, 150, 150, 0.6); border-radius: 10px; padding: 3px; margin: 5px">
 
                 <div style="width: 100%; height: 100%; margin: 3px;">
@@ -21,7 +25,7 @@
                     <p>{{ $item->description }}</p></div>
 
         </div>
-    @endforeach
+        @endforeach
 
     @foreach($news->links()->elements[0] as $page)
     <a href="{{$page}}">{{$loop->index+1}}</a>

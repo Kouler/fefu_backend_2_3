@@ -7,7 +7,10 @@
     <title>TheLatestNews</title>
 </head>
 <body>
-<a href="{{ route('news_list') }}">Новости</a>
+<div style="margin-top: 25px">
+<a href="{{ route('news_list') }}" style="margin: 20px">Новости</a>
+<a href="{{ route('appeal') }}" style="margin: 20px;">Написать сообщение</a>
+</div>
 <div style="align-content: center">
     <div style="width: 80%">
 

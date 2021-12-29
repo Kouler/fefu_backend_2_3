@@ -16,17 +16,28 @@ class AppealController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->isMethod('get')) {
-            //echo('HELLO');
-            $appeal = new Appeal;
-            return view('appeal', ['appeal' => $appeal]);
+            $success = '';
+            return view('appeal');
         }
 
         if ($request->isMethod('post')) {
-            echo('NICE!');
-            $validation = $request->validate([
-                'name' => 'required'
+            $validated = $request->validate([
+                'name' => 'required|min:2|max:20',
+                'phone' => 'required_without:email|nullable|size:11',
+                'email' => 'required_without:phone|nullable|regex:/^.+@.+$/i|max:100',
+                'message' => 'required|max:100'
             ]);
-            return view('appeal');
+
+            $appeal = new Appeal();
+            $appeal->name = $request->input('name');
+            $appeal->phone = $request->input('phone');
+            $appeal->email = $request->input('email');
+            $appeal->message = $request->input('message');
+
+            $appeal->save();
+
+            return redirect()->back()->with('message', 'Сообщение успешно отправлено и зарегистрировано');
+
         }
     }
 }
