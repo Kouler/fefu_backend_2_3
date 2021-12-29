@@ -12,7 +12,7 @@ class AppealController extends Controller
         if ($request->isMethod('get')) {
             return view('appeal');
         }
-        
+
         $validated = $request->validate([
             'name' => 'required|min:2|max:20',
             'phone' => 'required_without:email|nullable|size:11',
