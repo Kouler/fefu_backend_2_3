@@ -6,7 +6,7 @@
 
     <title>TheLatestNews</title>
 </head>
-<body>
+<body style="background-color: #242525">
     <div style="margin: 25px 20px 20px 0px">
         <a href="{{ route('appeal') }}">Написать сообщение</a>
     </div>
