@@ -15,11 +15,6 @@ class Appeal extends Model
         'email',
         'message'
     ];
-//$table->id();
-//$table->string('name', 20);
-//$table->string('phone', 11)->nullable();
-//$table->string('email', 100)->nullable();
-//$table->string('message');
-//
-//$table->timestamps();
+
+    protected $table = 'appeal';
 }
