@@ -15,6 +15,5 @@ class Appeal extends Model
         'email',
         'message'
     ];
-
     protected $table = 'appeal';
 }
