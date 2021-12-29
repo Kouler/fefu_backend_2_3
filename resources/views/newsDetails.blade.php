@@ -6,12 +6,12 @@
 
     <title>TheLatestNews</title>
 </head>
-<body style="background-color: #242525">
-<div style="margin-top: 25px">
-<a href="{{ route('news_list') }}" style="margin: 20px">Новости</a>
-<a href="{{ route('appeal') }}" style="margin: 20px;">Написать сообщение</a>
+<body style="background-color: #242525;">
+<div style="margin-top: 25px;">
+<a href="{{ route('news_list') }}" style="color: lightblue; margin-right: 20px; margin-left: 20px">Новости</a>
+<a href="{{ route('appeal') }}" style="color: lightblue;">Написать сообщение</a>
 </div>
-<div style="align-content: center">
+<div style=" color: white; align-content: center">
     <div style="width: 80%">
 
         <h1 style="margin-bottom: 20px; font-size: 55px">{{$news->title}}</h1>

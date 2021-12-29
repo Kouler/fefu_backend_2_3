@@ -14,24 +14,29 @@
         .my-input {
             width: 100%;
             margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #444545;
         }
 
         form div label {
             font-size: 20px;
-            color: #080;
+            color: rgb(184, 255, 168);
         }
 
         form div input {
-            border-radius: 5px;
         }
 
         form div textarea {
             border-radius: 5px;
         }
+
+        .my-input::placeholder {
+            color: #FFF;
+        }
     </style>
 
     <div style="margin: 25px">
-        <a href="{{ route('news_list') }}">Новости</a>
+        <a style="color: lightblue" href="{{ route('news_list') }}">Новости</a>
     </div>
 
     <div class="form-group" style="margin-top: 50px; width: 50%; margin-left: auto; margin-right: auto">
