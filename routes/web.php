@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppealController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 /*
@@ -15,8 +16,13 @@ use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/news', [NewsController::class, 'getList'])->name('news_list');
 
 Route::get('/news/{slug}', [NewsController::class, 'getDetails'])->name('news_item');
+//->where('slug', '[-\w]+')
+
+Route::get('/appeal', AppealController::class)->name('appeal');
+
+Route::post('/appeal', AppealController::class)->name('appeal');
