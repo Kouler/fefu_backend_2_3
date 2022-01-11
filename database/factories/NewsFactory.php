@@ -19,7 +19,7 @@ class NewsFactory extends Factory
             'description' => $this->faker->text(15),
             'text' => $this->faker->text(100),
             'is_published' => $this->faker->boolean(70),
-            'published_at' => $this->faker->dateTimeBetween($startDate = '-60 days', $endDate = now(), $timezone = null)
+            'published_at' => $this->faker->dateTimeBetween($startDate = '-60 days', $endDate = '+14 days', $timezone = null)
         ];
     }
 }

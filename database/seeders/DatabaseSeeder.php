@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\News::truncate();
-        \App\Models\News::factory()->count(rand(15, 25))->create();
+        \App\Models\News::factory()->count(rand(20, 30))->create();
     }
 }
