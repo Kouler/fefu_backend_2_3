@@ -11,6 +11,10 @@ class Appeal extends Model
 
     protected  $fillable = [
         'name',
+        'surname',
+        'patronymic',
+        'age',
+        'gender',
         'phone',
         'email',
         'message'
