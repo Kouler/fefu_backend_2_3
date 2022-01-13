@@ -23,15 +23,15 @@ class AppealPostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public static function rules()
     {
         return [
-            'phone' => 'required_without:email|nullable|size:11|regex: /^(\+7|7|8){1}\(\d{3}\) \d{2}-\d{2}-\d{3}/$|string',
+            'phone' => ['required_without:email', 'nullable', 'regex:/^([\+7|7|8]{1,2})\(\d{3}\) \d{3}-\d{2}-\d{2}$/', 'string'],
             'name' => 'required|min:2|max:20|string',
             'surname' => 'required|min:2|max:40|string',
             'patronymic' => 'nullable|min:5|max:20|string',
             'age' => 'required|between: 14, 120|integer',
-            'email' => 'required_without:phone|nullable|regex:/^.+@.+$/i|max:100|string',
+            'email' => 'required_without:phone|nullable|regex:/^.+@.+$/|max:100|string',
             'message' => 'required|max:100|string',
             'gender' => ['required', Rule::in([Gender::MALE, Gender::FEMALE])]
         ];

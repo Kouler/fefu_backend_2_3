@@ -36,13 +36,13 @@
             font-size: 13px;
         }
 
-        .my-input:focus{
+        .my-input:focus, .my-input:hover {
             color: #444545;
             background-color: white;
             outline: 4px solid rgb(200, 100, 100);
         }
 
-        form div:focus-within label {
+        form div:focus-within label, form div:hover label {
             color: rgb(200, 100, 100);
         }
 
@@ -55,13 +55,26 @@
             outline: 4px solid rgb(200, 100, 100);
         }
 
+        .my-select {
+            font-size: 13px;
+            background-color: #444545;
+            color: #999;
+        }
+
+        .my-select:focus, .my-select:hover {
+            color: #444545;
+            background-color: white;
+            outline: 4px solid rgb(200, 100, 100);
+            color: #151515;
+        }
+
     </style>
 
     <div style="margin: 25px">
         <a style="color: lightblue" href="{{ route('news_list') }}">Новости</a>
     </div>
 
-    <div class="form-group" style="margin-top: 10px; width: 50%; margin-left: auto; margin-right: auto">
+    <div class="form-group" style="margin-top: 10px; width: 50%; margin-left: auto; margin-right: auto; margin-bottom: 50px">
         <h2 style="width: 100%; text-align: center; color: #CCC">Отправить сообщение</h2>
 
         @if(session()->has('message'))
@@ -72,7 +85,7 @@
         @endif
 
         @if ($errors->any())
-            <div class="alert alert-danger" style="width: 100%">
+            <div class="alert alert-danger" style="width: 100%; background-color: #58161A; color: #F5B5B5; border-color: #8B1F28">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -106,22 +119,26 @@
             </div>
 
             <div class="form-group">
-                <label for="gender-radios">Ваш пол</label>
-                <div id="gender-radios">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="gender" id="gender-male">
-                        <label for="gender-male">Мужской</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="gender" id="gender-female">
-                        <label for="gender-female">Женский</label>
-                    </div>
-                </div>
+                <label for="gender">Ваш пол</label>
+{{--                <div id="gender-radios">--}}
+{{--                    <div class="form-check">--}}
+{{--                        <input type="radio" class="form-check-input" name="gender" id="gender-male">--}}
+{{--                        <label for="gender-male">Мужской</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-check">--}}
+{{--                        <input type="radio" class="form-check-input" name="gender" id="gender-female">--}}
+{{--                        <label for="gender-female">Женский</label>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <select class="form-select my-select" name="gender" id="gender">
+                    <option value="0" {{ old('gender') === 0 ? 'selected="selected"' : ''}}>Мужской</option>
+                    <option value="1" {{ old('gender') === 1 ? 'selected="selected"' : ''}}>Женский</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="phone">Введите номер телефона</label>
-                <input value="{{ old('phone') }}" placeholder="Введите номер телефона" type="tel" pattern="(\+7|7|8){1}\(\d{3}\) \d{3}-\d{2}-\d{2}" class="my-input form-control" name="phone" id="phone">
+                <input value="{{ old('phone') }}" placeholder="+7(000) 000-00-00" type="tel" pattern="(\+7|7|8){1}\(\d{3}\) \d{3}-\d{2}-\d{2}" class="my-input form-control" name="phone" id="phone">
             </div>
 
             <div class="form-group">
