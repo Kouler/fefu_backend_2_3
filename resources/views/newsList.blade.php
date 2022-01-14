@@ -27,7 +27,10 @@
                         <a href="{{ route('news_item', ['slug' => $item->slug]) }}" style="width: 100%; height: 100%">
                             {{$item->title}}</a>
                     </h3>
-                    <p>{{ $item->description }}</p></div>
+                    @if (!($item->description === null))
+                        <p>$item->description</p>
+                    @endif
+                </div>
 
         </div>
         @endforeach
