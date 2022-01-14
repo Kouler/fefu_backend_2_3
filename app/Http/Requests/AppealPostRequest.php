@@ -31,7 +31,7 @@ class AppealPostRequest extends FormRequest
             'surname' => 'required|min:2|max:40|string',
             'patronymic' => 'nullable|min:5|max:20|string',
             'age' => 'required|between: 14, 120|integer',
-            'email' => 'required_without:phone|nullable|regex:/^.+@.+$/|max:100|string',
+            'email' => 'required_without:phone|nullable|regex:/^[\w\.-]+@\w+\.\w+\b$/|max:100|string',
             'message' => 'required|max:100|string',
             'gender' => ['required', Rule::in([Gender::MALE, Gender::FEMALE])]
         ];
