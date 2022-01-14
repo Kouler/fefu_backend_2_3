@@ -28,6 +28,6 @@ class AppealController extends Controller
 
         $appeal->save();
 
-        return redirect()->route('appeal');
+        return redirect()->route('appeal')->with('message', 'Сообщение успешно отправлено и зарегистрировано');
     }
 }
