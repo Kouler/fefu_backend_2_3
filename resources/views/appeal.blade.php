@@ -128,7 +128,7 @@
 
         <div class="form-group">
             <label for="phone">Введите номер телефона</label>
-            <input value="{{ old('phone') }}" placeholder="+7(000) 000-00-00" type="tel" class="my-input form-control" name="phone" id="phone">
+            <input value="{{ old('phone') }}" placeholder="+7(000) 000-00-00" type="text" class="my-input form-control" name="phone" id="phone">
         </div>
 
         <div class="form-group">
