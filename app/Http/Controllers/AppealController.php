@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppealPostRequest;
 use App\Models\Appeal;
+use App\Sanitizers\PhoneSanitizer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AppealController extends Controller
 {
@@ -13,18 +16,17 @@ class AppealController extends Controller
             return view('appeal');
         }
 
-        $validated = $request->validate([
-            'name' => 'required|min:2|max:20',
-            'phone' => 'required_without:email|nullable|size:11',
-            'email' => 'required_without:phone|nullable|email|max:100',
-            'message' => 'required|max:100'
-        ]);
+        $validated = $request->validate(AppealPostRequest::rules());
 
         $appeal = new Appeal();
-        $appeal->name = $request->input('name');
-        $appeal->phone = $request->input('phone');
-        $appeal->email = $request->input('email');
-        $appeal->message = $request->input('message');
+        $appeal->name = $validated['name'];
+        $appeal->surname = $validated['surname'];
+        $appeal->patronymic = $validated['patronymic'];
+        $appeal->age = $validated['age'];
+        $appeal->gender = $validated['gender'];
+        $appeal->phone = PhoneSanitizer::sanitize($validated['phone']);
+        $appeal->email = $validated['email'];
+        $appeal->message = $validated['message'];
 
         $appeal->save();
 
