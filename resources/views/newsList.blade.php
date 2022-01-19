@@ -6,11 +6,20 @@
 
     <title>TheLatestNews</title>
 </head>
-<body>
-    <h1 style="margin-bottom: 20px;">Новости</h1>
-    <div class="container" style="height: auto; min-height: 40px; width: 200px;">
-    @foreach($news as $item)
-        <div style="width: 100%; height: 100%; background-color: rgba(150, 150, 150, 0.6); border-radius: 10px; padding: 3px; margin: 5px">
+<body style="background-color: #242525">
+    <style type="text/css">
+        a {
+            color: lightblue
+        }
+    </style>
+    <div style="margin: 25px 20px 20px 0px">
+        <a href="{{ route('appeal') }}">Написать сообщение</a>
+    </div>
+    <div class="container" style="height: auto; min-height: 40px; width: 200px; margin-left: 30px; color: white">
+        <h1 style="margin-bottom: 20px;">Новости</h1>
+
+        @foreach($news as $item)
+        <div style="width: 100%; height: 100%; background-color: #444; border-radius: 10px; padding: 3px; margin: 5px">
 
                 <div style="width: 100%; height: 100%; margin: 3px;">
                     <p style="font-size: 13px">{{$item->published_at}}</p>
@@ -18,10 +27,13 @@
                         <a href="{{ route('news_item', ['slug' => $item->slug]) }}" style="width: 100%; height: 100%">
                             {{$item->title}}</a>
                     </h3>
-                    <p>{{ $item->description }}</p></div>
+                    @if (!($item->description === null))
+                        <p>$item->description</p>
+                    @endif
+                </div>
 
         </div>
-    @endforeach
+        @endforeach
 
     @foreach($news->links()->elements[0] as $page)
     <a href="{{$page}}">{{$loop->index+1}}</a>
