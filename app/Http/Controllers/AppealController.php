@@ -7,6 +7,8 @@ use App\Models\Appeal;
 use App\Sanitizers\PhoneSanitizer;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\Appeal;
+use Illuminate\Http\Request;
 
 class AppealController extends Controller
 {
