@@ -16,10 +16,11 @@
         margin-bottom: 10px;
         border-radius: 5px;
         background-color: #444545;
+        color: #EEE;
     }
 
     form div label {
-        font-size: 20px;
+        font-size: 16px;
         color: rgb(184, 255, 168);
     }
 
@@ -31,43 +32,103 @@
     }
 
     .my-input::placeholder {
-        color: #FFF;
+        color: #999;
+        font-size: 13px;
     }
+
+    .my-input:focus, .my-input:hover {
+        color: #444545;
+        background-color: white;
+        outline: 4px solid rgb(200, 100, 100);
+    }
+
+    form div:focus-within label, form div:hover label {
+        color: rgb(200, 100, 100);
+    }
+
+    .my-button:hover, .my-button:focus {
+        background-color: rgb(200, 100, 100);
+        border-color: rgb(200, 100, 100);
+        color: black;
+    }
+    .my-button:focus {
+        outline: 4px solid rgb(200, 100, 100);
+    }
+
+    .my-select {
+        font-size: 13px;
+        background-color: #444545;
+        color: #999;
+    }
+
+    .my-select:focus, .my-select:hover {
+        color: #444545;
+        background-color: white;
+        outline: 4px solid rgb(200, 100, 100);
+        color: #151515;
+    }
+
 </style>
 
 <div style="margin: 25px">
     <a style="color: lightblue" href="{{ route('news_list') }}">Новости</a>
 </div>
 
-<div class="form-group" style="margin-top: 50px; width: 50%; margin-left: auto; margin-right: auto">
-    <h2 style="width: 100%; text-align: center">Отправить сообщение</h2>
+<div class="form-group" style="margin-top: 10px; width: 50%; margin-left: auto; margin-right: auto; margin-bottom: 50px">
+    <h2 style="width: 100%; text-align: center; color: #CCC">Отправить сообщение</h2>
 
     @if(session()->has('message'))
         <div name="successes" class="alert alert-success">
             <h6 style="text-align: center">{{ session()->get('message') }}</h6>
         </div>
+    @else
     @endif
+
     @if ($errors->any())
-        <div class="alert alert-danger" style="width: 100%">
+        <div class="alert alert-danger" style="width: 100%; background-color: #58161A; color: #F5B5B5; border-color: #8B1F28">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
+    @else
     @endif
 
 
     <form action="{{ route('appeal') }}" method="post" class="container" style="width: 450px;">
         @csrf
         <div class="form-group">
+            <label for="surname">Введите фамилию</label>
+            <input value="{{ old('surname') }}" placeholder="Введите фамилию" type="text" class="my-input form-control" name="surname" id="surname">
+        </div>
+
+        <div class="form-group">
             <label for="name">Введите имя</label>
             <input value="{{ old('name') }}" placeholder="Введите имя" type="text" class="my-input form-control" name="name" id="name">
         </div>
 
         <div class="form-group">
+            <label for="patronymic">Введите отчество</label>
+            <input value="{{ old('patronymic') }}" placeholder="Введите отчество" type="text" class="my-input form-control" name="patronymic" id="patronymic">
+        </div>
+
+        <div class="form-group">
+            <label for="age">Введите ваш возраст</label>
+            <input value="{{ old('age') }}" placeholder="Введите возраст" type="text" class="my-input form-control" name="age" id="age">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Ваш пол</label>
+            <select class="form-select my-select" name="gender" id="gender">
+                <option value="0" {{ old('gender') === 0 ? 'selected="selected"' : ''}}>Мужской</option>
+                <option value="1" {{ old('gender') === 1 ? 'selected="selected"' : ''}}>Женский</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="phone">Введите номер телефона</label>
-            <input value="{{ old('phone') }}" placeholder="Введите номер телефона" type="text" class="my-input form-control" name="phone" id="phone">
+            <input value="{{ old('phone') }}" placeholder="+7(000) 000-00-00" type="text" class="my-input form-control" name="phone" id="phone">
         </div>
 
         <div class="form-group">
@@ -80,7 +141,7 @@
             <textarea placeholder="Введите текст сообщения" name="message" id="message" class="my-input form-control" rows="5" maxlength="100" style="resize: none">{{ old('message') }}</textarea>
         </div>
 
-        <input type="submit" name="submit" text="Отправить" class="btn btn-success">
+        <input type="submit" name="submit" text="Отправить" class="btn btn-success my-button">
     </form>
 </div>
 </body>
