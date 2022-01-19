@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         ChangeNewsSlug::class,
     ];
+
     /**
      * Define the application's command schedule.
      *
