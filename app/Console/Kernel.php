@@ -2,11 +2,17 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ChangeNewsSlug;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+
+    protected $commands = [
+        ChangeNewsSlug::class,
+    ];
+
     /**
      * Define the application's command schedule.
      *
